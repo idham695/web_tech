@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Nama : {{Nama}}</h1>
+        <h3>Prodi : {{Prodi}}</h3>
+        <h3>Tahun Angkatan : {{Tahun_Angkatan}}</h3>
+        <h3>Email : {{Email}}</h3>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            Nama: '',
+            Prodi: '',
+            Tahun_Angkatan: '',
+            Email: '',
+        }
+    })
+</script>
+</html>
