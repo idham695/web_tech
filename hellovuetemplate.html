@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="lib/vue.js"></script>
+    <style type="">
+        .color{
+            color: gray;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: "Hello guys",
+            pesan: "hello lagi",
+            class: "color",
+            html:"<span style='color:blue'>Hello lagi sss</span>"
+        },
+            template : `<div>
+                        <h1>{{ message }}</h1> 
+                        <h2 class="color">{{ pesan }}</h2>
+                        <h3 v-html="html"></h3>
+                        </div>`
+        
+    })
+</script>
+</html>

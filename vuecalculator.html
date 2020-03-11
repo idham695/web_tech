@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <table>
+        <tbody>
+            <tr>
+                <td>Bilangan 1</td>
+                <td colspan="4"><input type="number" v-model="firstvalue"></td>
+            </tr>
+            <tr>
+                <td>Bilangan 2</td>
+                <td colspan="4"><input type="number" v-model="secondvalue"></td>
+            </tr>
+            <tr>
+                <td>
+                    Operasi
+                </td>
+                <td>
+                    <button onclick="app.add()">+</button>
+                </td>
+                <td>
+                    <button onclick="app.substract()">-</button>
+                </td>
+                <td>
+                    <button onclick="app.multiply()">*</button>
+                </td>
+                <td>
+                    <button onclick="app.divide()">/</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Hasil
+                </td>
+                <td colspan="4">
+                    <input type="number" v-model="result" readonly>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <script>
+        var app = new Vue({
+            el : '#app',
+            data: {
+                firstvalue: 0,
+                secondvalue: 0,
+                result: 0
+            },
+            methods: {
+                add (){
+                    this.result = parseFloat(this.firstvalue) + parseFloat(this.secondvalue)
+                },
+                substract () {
+                    this.result = parseFloat(this.firstvalue) - parseFloat(this.secondvalue)
+                },
+                multiply (){
+                    this.result = parseFloat(this.firstvalue) * parseFloat(this.secondvalue)
+                },
+                divide (){
+                    this.result = parseFloat(this.firstvalue) / parseFloat(this.secondvalue)
+                },
+
+            }
+        })
+    </script>
+</body>
+</html>

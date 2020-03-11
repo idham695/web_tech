@@ -18,11 +18,36 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            Nama: '',
-            Prodi: '',
-            Tahun_Angkatan: '',
-            Email: '',
-        }
-    })
+            Nama: 'Idham Kholid',
+            Prodi: 'Teknik Informatika',
+            Tahun_Angkatan: '2017',
+            Email: 'idhamkholid965@gmail.com',
+        },
+        beforeCreate (){
+            console.log('before create: ' + ' nama = ' + this.Nama)
+        },
+        created () {
+            console.log('created : ' + ' nama ' + this.Nama)
+        },
+        beforeMount(){
+            console.log('before mount: ' + 'el  = ' + this.$el.textContent)
+        },
+        mounted (){
+            console.log('mounted: ' + 'el = ' + this.$el.textContent)
+        },
+        beforeUpdate (){
+            console.log('before update: ' +  'el = ' + this.$el.textContent)
+        },
+        updated(){
+            console.log('update: ' + 'el = ' + this.$el.textContent)
+        },
+        beforeDestroy (){
+            console.log('before destroyed')
+        },
+        destroyed (){
+            console.log('destroyed')
+        },
+    }) 
+        vm.$destroy()
 </script>
 </html>
