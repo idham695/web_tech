@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>From Onlinehop Penjualan Mobil</title>
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="vuelistkeyword.html"><img src="img/unnamed.png" alt=""></a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="header">Form penjualan mobil</h1>
+    <form action="" ref="formBook" @submit.prevent ="submitForm($event)" method="POST" id="myForm">
+        <p v-if="errors.length">
+            <div class="alert alert-danger mt-1" v-for="error in errors">
+                {{error}}
+            </div>
+        </p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                        <div class="form-group">
+                            <label>Merk</label>
+                            <input type="text" class="form-control" v-model.trim="merk" placeholder="silahkan masukan merk mobil" ref="merk"/>
+                         </div>
+                         <span>{{merk}}</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                        <div class="form-group">
+                            <label>Harga</label>
+                            <input type="number" class="form-control" v-model.number="harga" placeholder="silahkan masukan harga mobil">
+                         </div>
+                         <span>{{harga}}</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tahun Pembuatan Mobil</label>
+                    <select class="form-control"  v-model="Tahunpembuatan">
+                      <option disabled>Please select one</option>
+                      <option v-for="option in options" :value="option.value">{{option.text}}</option>
+                    </select>
+                    <span>Selected: {{Tahunpembuatan}}</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="">Jenis Mobil</label>
+                <div class="form-check" v-for="opsi in opsis">
+                <input class="form-check-input" type="radio"  v-model="jenis" :value="opsi.value">
+                {{opsi.text}}
+            </div>
+            <span>Selected: {{jenis}}</span>
+        </div>
+        <div class="row">
+            <div class="col-md-8 ml-3">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Deskripsi Mobil</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="deskripsi"></textarea>
+                    <span>{{deskripsi}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <label>Photo Mobil</label>
+            <input type="file" class="form-control-file" ref="photo" name="photo">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    </div>
+    <div class="row footer" id="footer">
+        <div class="col text-center">
+            <p>&copy; 2020 all right reserved by Daihatsu Tunas</p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="lib/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data : {
+            merk: '',
+            harga: 0,
+            deskripsi: '',
+            opsis: [
+                {text: 'SUV', value: '01'},
+                {text: 'VAN', value: '02'},
+                {text: 'Minibus', value: '03'}
+            ],
+            options: [
+                {text: '2018', value: '01'},
+                {text: '2017', value: '02'},
+                {text: '2016', value: '03'},
+                {text: '2015', value: '04'},
+                {text: '2014', value: '05'},
+                {text: '2013', value: '06'},
+                {text: '2012', value: '07'},
+            ],
+            jenis: [],
+            Tahunpembuatan: [],
+            errors: []
+        },
+        methods:{
+            submitForm(event){
+                this.errors = []
+                // Validasi
+                if(this.merk.length < 3){
+                    this.errors.push("Merk minimal 3 karakter")
+                    this.$refs.merk.select()                
+                }
+                if(this.harga < 0){
+                    this.errors.push("Harga tidak boleh minus")
+                    this.$refs.harga.select()                
+                }
+                if(this.deskripsi.length > 500){
+                    this.errors.push("deskripsi maksimal 500 karakter")
+                    this.$refs.deskripsi.select()                
+                }
+                if(this.jenis.length === 0){
+                    this.errors.push("Pilihlah minimal 1 jenis")
+                    this.$refs.jenis.focus()                
+                }
+                if(this.Tahunpembuatan.length === 0){
+                    this.errors.push("Pilihlah minimal 1 Tahun pembuatan")
+                    this.$refs.Tahunpembuatan.focus()                
+                }
+                if(this.errors.length === 0){
+
+                    // persiapkan data yang akan dikirim
+                    let formData = new FormData()
+                    let photo = this.$refs.photo.files[0]
+                    formData.append('merk', this.merk)
+                    formData.append('harga', this.harga)
+                    formData.append('deskripsi', this.deskripsi)
+                    formData.append('jenis', this.jenis)
+                    formData.append('Tahun pembuatan', this.Tahunpembuatan)
+                    formData.append("photo", photo)
+
+                    // kirim data ke server
+                    let xhttp = new XMLHttpRequest()
+                    xhttp.onreadystatechange = function(){
+                        if(this.readyState == 4 && this.status == 200){
+                            console.log(this.responseText)
+                        }
+                    }
+                    xhttp.open("POST", "http://localhost/vuejs/proses.php", true)
+
+
+                    xhttp.send(formData)
+                }
+            }
+        }
+    });
+</script>
+</html>

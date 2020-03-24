@@ -1,0 +1,136 @@
+html, body{
+  background-color: #dddddd;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.header{
+  text-align: center;
+  font-size: 32px;
+}
+/* navbar */
+.navbar {
+  box-shadow: 0 2px rgba(0, 0, 0, 0.5);
+  background-color: white;
+}
+.navbar-brand{
+    margin-left: 30px;
+}
+.navbar-brand img {
+    width: 200px;
+    margin-top: 4px;
+}
+.nav a:hover{
+  color: #dddd;
+}
+
+.sidenav{
+    height: 100%;
+    background-color: white;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 60px;
+  }
+.main {
+    cursor: pointer;
+    font-size: 30px;
+    color: #bbb;
+    margin-top: -2px;
+}
+.main :hover{
+  color: #dddd;
+} 
+  .sidenav a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+    display: block;
+    text-align: left;
+  }
+
+  .sidenav .closebtn{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+/* product */
+.card {
+  margin-top: 20px;
+}
+/* footer */
+.footer {
+  background-color: #b0afac;
+  margin-top: 60px;
+  padding-top: 20px;
+  font-size: 18px;
+}
+
+/* utility */
+.utility{
+  opacity: 0.3;
+}
+.icon {
+  margin-top: 30px;
+  position: fixed;
+  right: 10vw;
+  z-index: 10;
+  bottom: 0;
+}
+.icon img {
+  width: 60px;
+}
+.feather {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: #dddddd;
+  cursor: pointer;
+}
+.form-control{
+  width: 30vw;
+}
+.table{
+  margin-top: 10px;
+}
+.keyword{
+  margin-top: 20px;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+  .navbar-brand {
+    margin-left: 10px;
+  }
+  .sidenav a {
+    font-size: 14px;
+  }
+  .icon{
+    right: 3vw;
+  }
+  .navbar-brand img {
+    width: 150px;
+  }
+  .main {
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+  .feather {
+    width: 18px;
+    height: 18px;
+  }
+  .footer {
+    font-size: 14px;
+  }
+}

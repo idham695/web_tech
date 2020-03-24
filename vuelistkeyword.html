@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Daihatsu</title>
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="vueform.html"><img src="img/unnamed.png" alt=""></a>
+        </div>
+    </nav>
+    <div class="product">
+        <div class="container">
+            <input type="text" class="form-control keyword" placeholder="ketikan kata kunci" v-model="keyword">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">img</th>
+                        <th scope="col">name</th>
+                        <th scope="col">price</th>
+                    </tr>
+                </thead>
+                <tbody v-for="(product, index) of filterProducts" :key="index">
+                    <th scope="row">{{product.id}}</th>
+                    <td><img width="100" :src="'img/' + product.image" alt=""></td>
+                    <td>{{product.name}}</td>
+                    <td>Rp. {{product.price}} juta</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row footer" id="footer">
+        <div class="col text-center">
+            <p>&copy; 2020 all right reserved by Daihatsu Tunas</p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data : {
+            keyword: '',
+            products : [
+                {
+                    id : 1,
+                    name : 'Ayla',
+                    image : 'ayla.jpg',
+                    price : 115
+                },
+                {
+                    id : 2,
+                    name : 'Xenia',
+                    image : 'xenia.jpg',
+                    price : 200
+                },
+                {
+                    id : 3,
+                    name : 'Sigra',
+                    image : 'sigra.jpg',
+                    price : 180
+                },
+                {
+                    id : 4,
+                    name : 'Grand Max Pick Up',
+                    image : 'Gran max pu.jpg',
+                    price : 180
+                },
+                {
+                    id : 5,
+                    name : 'Gran Max Blind Van',
+                    image : 'Gran max BV.jpg',
+                    price : 160
+                },
+                {
+                    id : 6,
+                    name : 'Gran Max Mini Bus',
+                    image : 'gran max mb.jpg',
+                    price : 140
+                },
+                {
+                    id : 7,
+                    name : 'Luxio',
+                    image : 'luxio.jpg',
+                    price : 130
+                },
+                {
+                    id : 8,
+                    name : "Terios",
+                    image : 'terios.jpg',
+                    price : 140
+                },
+                {
+                    id : 9,
+                    name : 'Sirion',
+                    image : 'sirion.jpg',
+                    price : 175
+                },
+            ]
+        },
+        computed: {
+            filterProducts() {
+                return this.products.filter((product)=>{
+                    return product.name.includes(this.keyword)
+                })
+            }
+        }
+    });
+</script>
+</html>

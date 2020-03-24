@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <div v-for = "nilais of nilai">
+                <p>nama: {{nilais. nama}}</p>
+                <p>nilai: {{nilais. nilai}}</p>
+                <div v-if="nilais.nilai === 100">
+                    keterangan: Perfect
+                </div>
+                <div v-if="nilais.nilai === 80">
+                    keterangan: Great
+                </div>
+                <div v-if="nilais.nilai === 60">
+                    keterangan: Not Good
+                </div>
+        </div>
+        <button v-on:click="info('informasi daftar nilai mata kuliah desain animasi')">
+            Informasi
+        </button>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            nilai : [
+                {
+                    id : 1,
+                    nama : "Idham kholid",
+                    nilai : 100
+                },
+                {
+                    id : 2,
+                    nama : "Alif",
+                    nilai : 80
+
+                },
+                {
+                    id : 3,
+                    nama : "Yusuf",
+                    nilai : 80
+                },
+                {
+                    id : 4,
+                    nama : "Sandy",
+                    nilai : 60
+                },
+
+            ]
+        },
+        methods:  {
+            info (text) {
+                alert(text)
+            },
+        }
+    }) 
+</script>
+</html>
